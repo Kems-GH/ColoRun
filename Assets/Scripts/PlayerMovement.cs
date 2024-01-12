@@ -21,6 +21,11 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             isOnGround = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GameManager.Instance.RestartLevel();
+        }
     }
 
     void FixedUpdate()
