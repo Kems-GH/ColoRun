@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        timer = 0;
         currentLevel = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene(currentLevel);
     }
