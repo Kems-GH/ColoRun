@@ -20,9 +20,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.pause) return;
+
         horizontalInput = Input.GetAxis("Horizontal"); // A/D, Left/Right
 
-        if(Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && isOnGround)
         {
             // Jump
             rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
@@ -36,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameManager.Instance.pause) return;
+
         isOnGround = Physics2D.IsTouchingLayers(groundTrigger.GetComponent<Collider2D>(), LayerMask.GetMask("Ground"));
         rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
     }

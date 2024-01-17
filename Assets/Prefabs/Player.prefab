@@ -197,7 +197,6 @@ GameObject:
   - component: {fileID: 7049163258198705206}
   - component: {fileID: 6432012191286579092}
   - component: {fileID: 68800967205978305}
-  - component: {fileID: 4273508792024598408}
   m_Layer: 0
   m_Name: Ground trigger
   m_TagString: Untagged
@@ -317,16 +316,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.90510166, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4273508792024598408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7895531948885441819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 466df4f5a4829884f8e0a50c8ced76db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMovementScript: {fileID: 8461418873903000446}

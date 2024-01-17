@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public BestTimeManager bestTimeManager { get; private set; }
 
     private bool levelMode;
+
+    public bool pause = false;
     private void Awake()
     {
         if (Instance != null)
@@ -29,7 +31,7 @@ public class GameManager : MonoBehaviour
         bestTimeManager.AddTime(currentLevel, timerLevel);
         timerLevel = 0;
 
-        if(levelMode)
+        if (levelMode)
         {
             currentLevel = 0;
             UnityEngine.SceneManagement.SceneManager.LoadScene(currentLevel);
@@ -50,6 +52,24 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
+        if (levelMode)
+        {
+            timer = 0;
+            timerLevel = 0;
+        }
+        UnityEngine.SceneManagement.SceneManager.LoadScene(currentLevel);
+    }
+
+    public void Restart()
+    {
+        if (levelMode)
+        {
+            RestartLevel();
+            return;
+        }
+        timer = 0;
+        timerLevel = 0;
+        currentLevel = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene(currentLevel);
     }
 
