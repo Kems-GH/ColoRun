@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public readonly int MAX_LEVEL = 3;
+    public readonly int MAX_LEVEL = 4;
     public static GameManager Instance { get; private set; }
     public int currentLevel { get; private set; } = 0;
     public int timer { get; set; } = 0;
