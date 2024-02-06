@@ -2,12 +2,9 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    private TMPro.TextMeshProUGUI text;
-    void Start()
-    {
-        TryGetComponent(out text);
-        StartTimer();
-    }
+    [SerializeField] private TMPro.TextMeshProUGUI text;
+
+    [HideInInspector] public bool isRunning = false;
 
     void Update()
     {
@@ -16,6 +13,7 @@ public class Timer : MonoBehaviour
 
     public void StartTimer()
     {
+        isRunning = true;
         InvokeRepeating("IncrementTimer", 1f, 1f);
     }
 

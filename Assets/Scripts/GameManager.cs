@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public readonly int MAX_LEVEL = 2;
+    public readonly int MAX_LEVEL = 3;
     public static GameManager Instance { get; private set; }
     public int currentLevel { get; private set; } = 0;
     public int timer { get; set; } = 0;
@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     private bool levelMode;
 
-    public bool pause = false;
+    [HideInInspector] public bool pause = false;
     private void Awake()
     {
         if (Instance != null)

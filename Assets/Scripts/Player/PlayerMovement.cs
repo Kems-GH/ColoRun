@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    [SerializeField] private Transform groundTrigger;
+    [SerializeField] private Timer timer;
 
     private void Awake()
     {
@@ -24,10 +24,9 @@ public class PlayerMovement : MonoBehaviour
 
         horizontalInput = Input.GetAxis("Horizontal"); // A/D, Left/Right
 
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && isOnGround)
+        if(!timer.isRunning && horizontalInput != 0)
         {
-            // Jump
-            rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+            timer.StartTimer();
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -39,9 +38,17 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (GameManager.Instance.pause) return;
+        float jumpVelocity = rb.velocity.y;
 
-        isOnGround = Physics2D.IsTouchingLayers(groundTrigger.GetComponent<Collider2D>(), LayerMask.GetMask("Ground"));
-        rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.3f, LayerMask.GetMask("Ground"));
+        isOnGround = hit.collider != null;
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && isOnGround)
+        {
+            // Jump
+            jumpVelocity = jumpForce;
+        }
+
+        rb.velocity = new Vector2(horizontalInput * speed, jumpVelocity);
     }
 
     public void SetIsOnGround(bool isGrounded)
