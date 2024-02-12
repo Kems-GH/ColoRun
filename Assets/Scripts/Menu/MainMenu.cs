@@ -5,6 +5,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI bestTimeText;
     [SerializeField] private GameObject levelSelecter;
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject HowToPlayMenu;
 
     private void Start()
     {
@@ -31,6 +32,12 @@ public class MainMenu : MonoBehaviour
     public void Back()
     {
         levelSelecter.SetActive(false);
+        HowToPlayMenu.SetActive(false);
         mainMenu.SetActive(true);
+    }
+    public void HowToPlay()
+    {
+        HowToPlayMenu.SetActive(true);
+        mainMenu.SetActive(false);
     }
 }
