@@ -40,7 +40,8 @@ public class PlayerMovement : MonoBehaviour
         if (GameManager.Instance.pause) return;
         float jumpVelocity = rb.velocity.y;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.3f, LayerMask.GetMask("Ground"));
+        //RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.3f, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(0.40f, 0.40f), 0, Vector2.down, 0.05f, LayerMask.GetMask("Ground"));
         isOnGround = hit.collider != null;
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && isOnGround)
         {
